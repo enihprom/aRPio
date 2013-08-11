@@ -1,5 +1,5 @@
 ---------------------------
----- fsel_control (spec) --
+---- fsel_control (body) --
 ---------------------------
 
 with ada.text_io;
@@ -9,7 +9,8 @@ with interfaces;	use interfaces;
 with gnat.memory_dump;	use gnat.memory_dump;
 with binary;	use binary;
 
-
+-- this one represents my concept of control register manipulation
+-- something like this will be built into the library
 procedure fsel_control is
 
 	A_W   : constant := system.word_size/system.storage_unit;
