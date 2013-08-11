@@ -15,12 +15,9 @@ package body binary is
 		bits : bit_array;
 		for bits'address use uint'address;
 		image_str : string(1..32);
-		--for bit_array'bit_order use system.low_order_first;
-		for bit_array'bit_order use system.high_order_first;
 	begin
 
-		--for i in reverse 1..32 loop
-		for i in 1..32 loop
+		for i in reverse 1..32 loop
 			if bits(i) then
 				image_str(i) := '1';
 			else
