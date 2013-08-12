@@ -8,9 +8,10 @@ project status:
       including transition fragments for full-adaification
       existing but yet untested regarding electric in/out
   - softpwm package rpiservo. timing tests on a raspian PREEMTible kernel say jittering up to t_1*100 ;)
-  2 test routines:
+  - 2 test routines:
     test_gpio.adb 
     test_rpiservo.adb
+  - fsel_example.adb - a preview of my further design approach - but essentially useless & will go away
 
 further roadmap:
   currently in progress:
