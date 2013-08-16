@@ -1,0 +1,113 @@
+V "GNAT Lib v4.6"
+P SS
+R nnnnnnnnnvnnnnnnnnnnnnnvvvnnnnnnnnnnvnnvnnnnnnnnnnnvnnnnnnnnvnnnnnnnnnnnnnnnnnnn
+
+U rpiservo%b		rpiservo.adb		e9fe8711 NE OO PK GE IL
+W ada%s			ada.ads			ada.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
+W ada.real_time%s	a-reatim.adb		a-reatim.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+
+U rpiservo%s		rpiservo.ads		124c9e86 BN EE NE OO PK GE IL
+
+D ada.ads		20070406091342 3ffc8e18
+D a-except.ads		20090727140100 0c711ac9
+D a-finali.ads		20090409150019 e5e85fa4
+D a-filico.ads		20090409150019 872dc219
+D a-flteio.ads		20070406091342 e18a47a0
+D a-ioexce.ads		20091130110856 8b9de6cd
+D a-reatim.ads		20090409150019 63f07669
+D a-stream.ads		20090409150019 2ca4ee37
+D a-tags.ads		20101021101406 c7695348
+D a-textio.ads		20091028140912 386df5d4
+D a-tiflio.ads		20090409150019 56fbda09
+D a-unccon.ads		20070406091342 f9eb8f06
+D interfac.ads		20090409150019 f77d8799
+D i-c.ads		20101007125900 809c38c4
+D i-cstrea.ads		20100622165701 1bd72c32
+D rpiservo.ads		20130807163947 124c9e86
+D rpiservo.adb		20130807164157 41a5dd8a
+D system.ads		20100122115545 d30b9abe
+D s-atacco.ads		20090409150019 1dc856ad
+D s-crtl.ads		20100617122610 ac77b159
+D s-exctab.ads		20090417131547 66e51330
+D s-ficobl.ads		20100909103250 443b9d66
+D s-finimp.ads		20090409150019 46853fe8
+D s-finroo.ads		20090409150019 dbb860c9
+D s-linux.ads		20090730092306 47911ab1
+D s-multip.ads		20101011073009 38ac9f73
+D s-osinte.ads		20101127183452 6e2d2e09
+D s-parame.ads		20091130110856 9c5d83fa
+D s-secsta.ads		20090707124243 eea35a36
+D s-soflin.ads		20090729085153 9414c974
+D s-stache.ads		20090417130712 596fc1b4
+D s-stausa.ads		20101018101807 bba781f7
+D s-stalib.ads		20101021102512 c4241c00
+D s-stoele.ads		20090417130712 facd7d98
+D s-stoele.adb		20100617152355 afc5dc80
+D s-stratt.ads		20100909123135 aedef97e
+D s-tasinf.ads		20090409150019 21316953
+D s-taspri.ads		20080408064315 5fb744bc
+D s-taprop.ads		20090409150019 07f79e46
+D s-taskin.ads		20101021101406 b2eaee08
+D s-traent.ads		20090417130712 5221ee41
+D s-unstyp.ads		20090409150019 6ae15c76
+D s-wchcon.ads		20090417130712 bfeb2e3d
+X 1 ada.ads
+16K9*Ada 19e8 17|1r6 1r25 2r6 2r23 3r6 3r29
+X 5 a-flteio.ads
+20K13*Float_Text_IO[11|45] 17|3w10 3r33
+X 7 a-reatim.ads
+39K13*Real_Time 139e18 17|1w10 1r29
+41O9*Time 17|36r50
+46O9*Time_Span
+53V13*Clock{41O9} 17|44s39 49s53
+58V13*"-"{46O9} 17|49s58
+80V13*To_Duration{duration} 17|49s41
+X 10 a-textio.ads
+49K13*Text_IO 472e16 17|2w10 2r27
+264U14*Put_Line 17|43s25 53s25 94s25 103s25 114s17
+X 16 rpiservo.ads
+5f9 half_range{float} 21r46 21r60
+6o9 ts_min{duration} 22r49 22r59
+7o9 ts_range{duration} 22r66
+8i9 n_servos{positive} 23r53 17|94r65
+9o9 clocking{duration} 17|60r35
+19k9*rpiservo 5z9 6z9 7z9 8z9 9z9 81l5 81e13 17|5b14 118l5 118t13
+21F17*degrees_type{float} 37r39 74r34 17|9r39 10r29 11r37 11r55 12r29 13r33
+. 111r34 112r27 112r44 112r64
+22O17*pulselen_type{duration} 25r57 31r18 38r32 64r42 78r28 17|9r60 13r55
+. 13r74 15r24 100r37
+23I17*chan_id_type{positive} 25r40 63r42 73r34 77r28 17|36r33 38r43 48r45
+. 61r34 99r37 110r34
+25A14*timeslice_array(22O17)<integer> 32r18
+31o9*time_0{22O17} 17|60m25 62m33 62r43 68r31
+32a9*time_1{25A14} 17|62r50 64r39 104m25
+37V18*to_pulselen{22O17} 37>30 17|9b18 16l13 16t24 17r23
+37f30 deg{21F17} 17|9b30 15r38
+41T19*servo_task 66r24 17|34b19 78l13 78t23
+54W24*servo_bank 67l13 67e23 69r17 17|81b24 107l13 107t23
+55U27 center_all 17|91b27 96l21 96t31
+62U27 set_t1 63>25 64>25 17|98b27 105l21 105t27
+63i25 servo_id{23I17} 17|99b25 103r49 104r32
+64o25 new_ts{22O17} 17|100b25 103r72 104r45
+66t17 sst{41T19}
+69w9*bank{54W24} 78r51
+72U19*steer 73>17 74>17 17|109b19 116l13 116t18
+73i17 servo_id{23I17} 17|110b17
+74f17 new_degrees{21F17} 17|111b17
+76U19*steer
+77i17 servo_id{23I17}
+78o17 new_ts{22O17}
+X 17 rpiservo.adb
+10f17 deg_range{float} 15r51
+12f17 ts_range{float} 15r42
+36a17 cycles(7|41O9) 44m25 49r59
+38U27 set_pin 38b27 38>35 45l21 45t28 46r31 63s33
+38i35 si{16|23I17} 43r34 44r32
+48U27 unset_pin 48b27 48>37 54l21 54t30 55r31 65s33
+48i37 si{16|23I17} 49r66 53r34
+49o25 t{duration} 53r59
+61i29 i{16|23I17} 62r57 63r41 64r46 65r43
+112f17 d_range{16|21F17} 114r40
+

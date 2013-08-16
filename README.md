@@ -1,7 +1,7 @@
 aRPio
 =====
 
-ada library for (RaspberryPi's) bcm2835 gpio
+Ada library for (RaspberryPi's) bcm2835 gpio
 
 project status:
   - thin binding to bcm2835.c serving as door opener to play with
@@ -11,14 +11,16 @@ project status:
   - 2 test routines:
     test_gpio.adb 
     test_rpiservo.adb
-  - fsel_example.adb - a preview of my further design approach - but essentially useless & will go away
+  - 2 more important test routines:
+    test_mmio1.adb
+    test_mmio2.adb
 
 further roadmap:
   currently in progress:
-  - design considerations for adaification/purification
-  - creating specific types for manipulating the function select bits, getting/setting pin states +  
-      a new init-routine
+  - yet more design considerations advantaging ada features
+  - creating yet more specific types for manipulating higher level devices.  
   - project files
+  - remaking AdaFruit's PCA9685 pwm driver lib. well in ... Ada ;)
   planned:
   - portability branches or build-switches optimizing either kerneled/bareboard software
   - a complete bare-metal-near but high-level io framework like wiringPi + x with x primary aiming at 

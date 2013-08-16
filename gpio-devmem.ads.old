@@ -1,17 +1,25 @@
----------------------------
----- fsel_control (body) --
----------------------------
+with model_specific; use model_specific;
+with interfaces; use interfaces;
+with interfaces.c; use interfaces.c;
 
-with ada.text_io;
-use ada.text_io;
-with system;
-with interfaces;	use interfaces;
-with gnat.memory_dump;	use gnat.memory_dump;
-with binary;	use binary;
+-- broadcomm 2835 GPIO
+-- mixed thick/thin binding 
+-- cherrypicking and tightrope walking
+-- 	overhead avoidance by type-safety vs. overhead ;)
 
--- this one represents my concept of control register manipulation
--- something like this will be built into the library
-procedure fsel_control is
+package gpio is
+
+	pragma linker_options("/usr/local/lib/libbcm2835.a");
+
+	
+	-- types 
+	subtype   pin_control_index  is natural range 0 .. 9;
+	type      port_type      	  is access unsigned_32;
+	type      fsel_reg_type      is array (pin_control_index)
+		                             of     pin_mode;
+	type      fsel_regs_type     is array 
+		(pinset10_control_index, pin_control_index) --?
+		of     pin_mode;
 
 	A_W   : constant := system.word_size/system.storage_unit;
 	M_b   : constant := 3;
@@ -174,62 +182,194 @@ procedure fsel_control is
 			pin52  at 5*A_W range 2*M_b .. 2*M_b + M_b - 1;
 			pin53  at 5*A_W range 3*M_b .. 3*M_b + M_b - 1;
 		end record;          
-
-	fsel_reg : aliased control_register;
-
-	-- ctl_n : bwm_map_array := (
-	-- 	4 => (block => 0, word => 4),
-	-- 	16 = (block => 16#20200000#, 18),
-	-- 	);
-
-	type inspect_array is array (ctl_block_index) of unsigned_32;
-	pragma pack(inspect_array);
-	ia : inspect_array := (ctl_block_index'first .. ctl_block_index'last => 0);
-	--for fsel_reg'address use ia'address;
-	for fsel_reg'alignment use 4;
-	for ia'alignment use 4;
-	for ia'address use fsel_reg'address;
-	--pragma import( convention => ada, entity => ia );
-
-	--for bit_array'bit_order use system.high_order_first;
 	
-	procedure fsel_4and7_out is
-	begin
-		fsel_reg.pin04 := pin_mode_output;
-		fsel_reg.pin07 := pin_mode_output;
-	end fsel_4and7_out;
-                               
-	procedure fsel_40and45_pwm is
-	begin
-		fsel_reg.pin00 := pin_mode_alt_3;
-		fsel_reg.pin40 := pin_mode_alt_0;
-		fsel_reg.pin45 := pin_mode_alt_0;
-	end fsel_40and45_pwm;
-                               
-begin                          
-	put_line("st_unit=" & A_W'img);
-	dump(fsel_reg'address, (ctl_block_index'last+1)*A_W);
-	dump(ia'address, (ctl_block_index'last+1)*A_W);
-	for i in ctl_block_index'range loop
-		put_line(bitfield_image(ia(i)));
-	end loop;
-	new_line;                
-	fsel_4and7_out;
-	dump(fsel_reg'address, (ctl_block_index'last+1)*A_W);
-	dump(ia'address, (ctl_block_index'last+1)*A_W);
-	for i in ctl_block_index'range loop
-		put_line(bitfield_image(ia(i)));
-	end loop;
-	new_line;                
-	fsel_40and45_pwm;
-	dump(fsel_reg'address, (ctl_block_index'last+1)*A_W);
-	dump(ia'address, (ctl_block_index'last+1)*A_W);
-	for i in ctl_block_index'range loop
-		put_line(bitfield_image(ia(i)));
-	end loop;
-	new_line;                
-end fsel_control;              
-                               
+	use type interfaces.c.int;
 
 
+	-- constants
+	HIGH : constant := 16#1#;  -- pin HIGH  =  true   =  3.3 V
+	LOW  : constant := 16#0#;  -- pin LOW   =  false  =    0 V
+	BCM2835_CORE_CLK_HZ : constant := 250000000; --< 250 MHz
+	BCM2835_PERI_BASE   : constant := 16#20000000#;
+	BCM2835_ST_BASE     : constant := (BCM2835_PERI_BASE + 16#3000#);
+	BCM2835_GPIO_PADS   : constant := (BCM2835_PERI_BASE + 16#100000#);
+	BCM2835_CLOCK_BASE  : constant := (BCM2835_PERI_BASE + 16#101000#);
+	BCM2835_GPIO_BASE   : constant := (BCM2835_PERI_BASE + 16#200000#);
+	BCM2835_SPI0_BASE   : constant := (BCM2835_PERI_BASE + 16#204000#);
+	BCM2835_BSC0_BASE   : constant := (BCM2835_PERI_BASE + 16#205000#);
+	BCM2835_GPIO_PWM    : constant := (BCM2835_PERI_BASE + 16#20C000#);
+	BCM2835_BSC1_BASE   : constant := (BCM2835_PERI_BASE + 16#804000#);
+
+	BCM2835_GPFSEL0     : constant := 16#0000#;
+	BCM2835_GPFSEL1     : constant := 16#0004#;
+	BCM2835_GPFSEL2     : constant := 16#0008#;
+	BCM2835_GPFSEL3     : constant := 16#000c#;
+	BCM2835_GPFSEL4     : constant := 16#0010#;
+	BCM2835_GPFSEL5     : constant := 16#0014#;
+
+	BCM2835_GPSET0      : constant := 16#001c#;
+	BCM2835_GPCLR0      : constant := 16#0028#;
+	BCM2835_GPSET0_by4  : constant := 16#001c#/4;
+	BCM2835_GPCLR0_by4  : constant := 16#0028#/4;
+
+	pin_mode_input  : constant pin_mode := 2#000#;
+	pin_mode_output : constant pin_mode := 2#001#;
+	pin_mode_alt_0  : constant pin_mode := 2#100#;
+	pin_mode_alt_1  : constant pin_mode := 2#101#;
+	pin_mode_alt_2  : constant pin_mode := 2#110#;
+	pin_mode_alt_3  : constant pin_mode := 2#111#;
+	pin_mode_alt_4  : constant pin_mode := 2#011#;
+	pin_mode_alt_5  : constant pin_mode := 2#010#;
+
+
+	-- mapped addresses
+	bcm2835_gpio  :  system.address;
+	for bcm2835_gpio'address use system.to_address(mapped.bcm2835_gpio_base);
+
+	bcm2835_pwm   :  system.address;
+	bcm2835_clk   :  system.address;
+	bcm2835_pads  :  system.address;
+	bcm2835_spi0  :  system.address;
+	bcm2835_bsc0  :  system.address;
+	bcm2835_bsc1  :  system.address;
+	bcm2835_st    :  system.address;
+
+	-- set(pin :..) is
+	-- 	
+	--    for bcm2835_gpio'address use mapped_bcm2835_gpio_gp;
+	-- begin
+	-- ...
+	--
+	-- fsel(pin : pin_control_index; mode : ...) is
+	-- 	fsel_reg : fsel_reg_type := to_fsel_reg(pin/3);
+	-- 	for fsel_reg'address use ...
+	-- begin
+	-- 	fsel_reg(pin) := mode;
+	-- end
+	-- ...
+	-- or even
+	-- ...
+	-- fsel(pin : pin_index; mode : ...) is
+	-- 	fsel_regs : fsel_regs_type;
+	-- 	for fsel_regs'address use ...
+	-- begin
+	-- 	fsel_regs(pin) := mode;
+	-- end
+	-- }
+	
+	-- status variables
+	debug_mode            : boolean := false;
+
+	-- native versions
+	function init return system.address;
+	procedure close;
+	procedure set_debug(debug : in boolean := true);
+	procedure set_mode(pi : in pin_index; mode : pin_mode); --fsel
+	procedure set(pi : in pin_index);
+	procedure clr(pi : in pin_index);
+	procedure mset(pm : in pin_mask);
+	procedure mclr(pm : in pin_mask);
+	function get(pi : in pin_index) return boolean;
+	
+	pragma inline(init);
+	pragma inline(close);
+	pragma inline(set_debug);
+	pragma inline(set_mode);
+	pragma inline(set);
+	pragma inline(clr);
+	pragma inline(mset);
+	pragma inline(mclr);
+	pragma inline(get);
+	
+
+	--todo encapsulate in protected type
+	-- procedure peri_write (pa    : in paddr_type;	value : in unsigned_32);
+	-- function  peri_read  (pa    : in paddr_type) return unsigned_32;
+
+	gpio_error : exception;
+
+
+	procedure bcm2835_peri_set_bits(
+		paddr         :     portaddr_type;
+		value, mask   : in     unsigned_32);
+	pragma import(c, bcm2835_peri_set_bits);
+
+	procedure bcm2835_peri_read(
+		paddr         :     portaddr_type);
+	pragma import(c, bcm2835_peri_read);
+
+	procedure bcm2835_peri_write(
+		paddr         :     portaddr_type;
+		value         : in     unsigned_32);
+	pragma import(c, bcm2835_peri_write);
+
+	procedure bcm2835_peri_read_nb(
+		paddr         :     portaddr_type);
+	pragma import(c, bcm2835_peri_read_nb);
+
+	procedure bcm2835_peri_write_nb(
+		paddr         :     portaddr_type;
+		value         : in     unsigned_32);
+	pragma import(c, bcm2835_peri_write_nb);
+
+
+	function bcm2835_gpio_eds(pin : in unsigned_8) return unsigned_8;
+	pragma import(c, bcm2835_gpio_eds);
+
+	procedure bcm2835_gpio_set_eds(pin : in unsigned_8);
+	pragma import(c, bcm2835_gpio_set_eds);
+
+	procedure bcm2835_gpio_ren(pin : in unsigned_8);
+	pragma import(c, bcm2835_gpio_ren);
+
+	procedure bcm2835_gpio_clr_ren(pin : in unsigned_8);
+	pragma import(c, bcm2835_gpio_clr_ren);
+
+	procedure bcm2835_gpio_fen(pin : in unsigned_8);
+	pragma import(c, bcm2835_gpio_fen);
+
+	procedure bcm2835_gpio_clr_fen(pin : in unsigned_8);
+	pragma import(c, bcm2835_gpio_clr_fen);
+
+	procedure bcm2835_gpio_hen(pin : in unsigned_8);
+	pragma import(c, bcm2835_gpio_hen);
+
+	procedure bcm2835_gpio_clr_hen(pin : in unsigned_8);
+	pragma import(c, bcm2835_gpio_clr_hen);
+
+	procedure bcm2835_gpio_len(pin : in unsigned_8);
+	pragma import(c, bcm2835_gpio_len);
+
+	procedure bcm2835_gpio_clr_len(pin : in unsigned_8);
+	pragma import(c, bcm2835_gpio_clr_len);
+
+	procedure bcm2835_gpio_aren(pin : in unsigned_8);
+	pragma import(c, bcm2835_gpio_aren);
+
+	procedure bcm2835_gpio_clr_aren(pin : in unsigned_8);
+	pragma import(c, bcm2835_gpio_clr_aren);
+
+	procedure bcm2835_gpio_afen(pin : in unsigned_8);
+	pragma import(c, bcm2835_gpio_afen);
+
+	procedure bcm2835_gpio_clr_afen(pin : in unsigned_8);
+	pragma import(c, bcm2835_gpio_clr_afen);
+
+	procedure bcm2835_gpio_pud(pud : in unsigned_8);
+	pragma import(c, bcm2835_gpio_pud);
+
+	procedure bcm2835_gpio_pudclk(pud : in unsigned_8);
+	pragma import(c, bcm2835_gpio_pudclk);
+
+	function bcm2835_gpio_pad(group : in unsigned_8) return unsigned_32;	
+	pragma import(c, bcm2835_gpio_pad);
+
+	procedure bcm2835_gpio_set_pad(
+		group : in unsigned_8; control : in unsigned_32);
+	pragma import(c, bcm2835_gpio_set_pad);
+
+
+
+	
+end gpio;
 

@@ -1,0 +1,71 @@
+V "GNAT Lib v4.5"
+M P W=b
+P SS ZX
+R nnnnnnnnnnnnvnnnnnnnnnvnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnvnnnnnnnnnnnnnnnnnnn
+
+U enum%b		enum.adb		e48c00e2 NE OO SU IL
+W ada%s			ada.ads			ada.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W system%s		system.ads		system.ali
+W system.concat_2%s	s-conca2.adb		s-conca2.ali
+W system.concat_4%s	s-conca4.adb		s-conca4.ali
+W system.img_enum_new%s	s-imenne.adb		s-imenne.ali
+W system.img_lli%s	s-imglli.adb		s-imglli.ali
+W system.unsigned_types%s  s-unstyp.ads		s-unstyp.ali
+
+D ada.ads		20130628212824 9c7dd3ea
+D a-except.ads		20130628212826 34786013
+D a-finali.ads		20130628212822 bfd2ca79
+D a-filico.ads		20130628212828 4ff02a40
+D a-ioexce.ads		20130628212822 2504b9d2
+D a-stream.ads		20130628212829 34aca5be
+D a-tags.ads		20130628212823 bfa07446
+D a-textio.ads		20130628212822 7065b2f2
+D a-unccon.ads		20130628212823 51e09df2
+D enum.adb		20130808025308 94e9b210
+D interfac.ads		20130628212825 a69cad5c
+D i-cstrea.ads		20130628212828 e1e064a9
+D system.ads		20130628212825 8d0e78f1
+D s-conca2.ads		20130628212824 3d28f3da
+D s-conca4.ads		20130628212822 4d10618f
+D s-crtl.ads		20130628212823 bf835650
+D s-exctab.ads		20130628212823 4b7fd51d
+D s-ficobl.ads		20130628212825 8bb681e5
+D s-finimp.ads		20130628212825 90fd9896
+D s-finroo.ads		20130628212822 1408f9d1
+D s-imenne.ads		20130628212826 ef3ea0ac
+D s-imglli.ads		20130628212825 e058ac98
+D s-parame.ads		20130628212824 6cdeed25
+D s-secsta.ads		20130628212827 d2c357fb
+D s-soflin.ads		20130628212828 61e5c9e8
+D s-stache.ads		20130628212828 481f9e9d
+D s-stalib.ads		20130628212824 9cbc334a
+D s-stoele.ads		20130628212828 a4d57c26
+D s-stoele.adb		20130628212823 49ef69d7
+D s-stratt.ads		20130628212823 fef7c1da
+D s-traent.ads		20130628212827 a66ef260
+D s-unstyp.ads		20130628212822 c0f9fae5
+D s-wchcon.ads		20130628212825 30c48dc1
+X 1 ada.ads
+16K9*Ada 19e8 10|2r6 3r6
+X 8 a-textio.ads
+49K13*Text_IO 472e16 10|2w10 3r10
+167U14*New_Line 10|20r9 25r9
+243U14*Put 10|18r17 23r17
+264U14*Put_Line 10|27r9 30r9 32r9 35r9 38r9 39r9
+X 10 enum.adb
+6U11*enum 6b11 40l5 40t9
+7E14 enum_a 7e47 17r18 18r21 28r27 28r38 33r27 33r38
+7n25 stuff{7E14}
+7n32 can{7E14}
+7n37 go{7E14}
+7n41 wrong{7E14}
+8E14 enum_b 8e48 9r13 14r13 22r18 23r21 30r18 35r18 39r37
+8n25 shit{8E14} 10r17
+8n31 happens{8E14} 11r17
+8n40 in_time{8E14} 12r17 37r14
+14e9 b{8E14} 37m9 38r25 39r48
+17e13 i{7E14} 18r32 18r50
+22e13 i{8E14} 23r32 23r50
+
