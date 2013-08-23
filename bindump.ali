@@ -1,0 +1,159 @@
+V "GNAT Lib v4.5"
+M P W=b
+P SS ZX
+R nnnnnnvnnnnnnnnvnnvnvnvnnnnnnnnnnnnnvnvnnvnnnnnnnnvnnnnvnvvnnvnnnnnnnnnnnnnnn
+
+U bindump%b		bindump.adb		a7f12422 NE OO SU IL
+W ada%s			ada.ads			ada.ali
+W ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
+W ada.command_line%s	a-comlin.adb		a-comlin.ali
+W ada.environment_variables%s  a-envvar.adb	a-envvar.ali
+W ada.exceptions%s	a-except.adb		a-except.ali
+W ada.io_exceptions%s	a-ioexce.ads		a-ioexce.ali
+W ada.sequential_io%s
+W ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W ada.text_io.modular_aux%s  a-timoau.adb	a-timoau.ali
+W ada.text_io.modular_io%s
+W ada.unchecked_conversion%s
+W binary%s		binary.adb		binary.ali
+W gnat%s		gnat.ads		gnat.ali
+W gnat.os_lib%s		g-os_lib.ads		g-os_lib.ali
+W interfaces%s		interfac.ads		interfac.ali
+W interfaces.c_streams%s  i-cstrea.adb		i-cstrea.ali
+W system%s		system.ads		system.ali
+W system.concat_2%s	s-conca2.adb		s-conca2.ali
+W system.concat_3%s	s-conca3.adb		s-conca3.ali
+W system.crtl%s		s-crtl.ads		s-crtl.ali
+W system.file_control_block%s  s-ficobl.ads	s-ficobl.ali
+W system.file_io%s	s-fileio.adb		s-fileio.ali
+W system.img_int%s	s-imgint.adb		s-imgint.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.sequential_io%s  s-sequio.adb		s-sequio.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.storage_elements%s  s-stoele.adb	s-stoele.ali
+W system.unsigned_types%s  s-unstyp.ads		s-unstyp.ali
+W system.val_int%s	s-valint.adb		s-valint.ali
+
+D ada.ads		20130628212824 9c7dd3ea
+D a-calend.ads		20130628212825 19486c30
+D a-caldel.ads		20130628212825 c565f6eb
+D a-comlin.ads		20130628212825 6b7df106
+D a-envvar.ads		20130628212825 4438a956
+D a-except.ads		20130628212826 34786013
+D a-finali.ads		20130628212822 bfd2ca79
+D a-filico.ads		20130628212828 4ff02a40
+D a-ioexce.ads		20130628212822 2504b9d2
+D a-sequio.ads		20130628212823 fefacb21
+D a-sequio.adb		20130628212822 2c9ec41c
+D a-stream.ads		20130628212829 34aca5be
+D a-tags.ads		20130628212823 bfa07446
+D a-textio.ads		20130628212822 7065b2f2
+D a-timoau.ads		20130628212826 f99269ef
+D a-timoio.ads		20130628212828 9379d0d0
+D a-timoio.adb		20130628212828 6937596e
+D a-unccon.ads		20130628212823 51e09df2
+D a-uncdea.ads		20130628212826 dc667e6d
+D binary.ads		20130813022839 65a3b38b
+D bindump.adb		20130818140658 0501123b
+D gnat.ads		20130628212828 96410e68
+D g-os_lib.ads		20130628212825 c015094d
+D interfac.ads		20130628212825 a69cad5c
+D i-cstrea.ads		20130628212828 e1e064a9
+D system.ads		20130628212825 8d0e78f1
+D s-conca2.ads		20130628212824 3d28f3da
+D s-conca3.ads		20130628212822 a208bec3
+D s-crtl.ads		20130628212823 bf835650
+D s-exctab.ads		20130628212823 4b7fd51d
+D s-ficobl.ads		20130628212825 8bb681e5
+D s-fileio.ads		20130628212823 42b99b37
+D s-finimp.ads		20130628212825 90fd9896
+D s-finroo.ads		20130628212822 1408f9d1
+D s-imgint.ads		20130628212826 f77d133c
+D s-os_lib.ads		20130628212829 6320e1c3
+D s-parame.ads		20130628212824 6cdeed25
+D s-secsta.ads		20130628212827 d2c357fb
+D s-sequio.ads		20130628212826 d8b3a580
+D s-soflin.ads		20130628212828 61e5c9e8
+D s-stache.ads		20130628212828 481f9e9d
+D s-stalib.ads		20130628212824 9cbc334a
+D s-stoele.ads		20130628212828 a4d57c26
+D s-stoele.adb		20130628212823 49ef69d7
+D s-stratt.ads		20130628212823 fef7c1da
+D s-string.ads		20130628212827 14d97e8c
+D s-traent.ads		20130628212827 a66ef260
+D s-unstyp.ads		20130628212822 c0f9fae5
+D s-valint.ads		20130628212827 d23209d2
+D s-wchcon.ads		20130628212825 30c48dc1
+X 1 ada.ads
+16K9*Ada 19e8 21|5r6 6r6 8r6 8r29 11r6 12r5
+X 4 a-comlin.ads
+38K13*Command_Line 136e21 21|8w10 8r33
+48V13*Argument{string} 21|22r39 48r43
+X 5 a-envvar.ads
+16K13*Environment_Variables 59e30 21|11w10 26r55
+19V13*Value{string} 21|26r77
+X 10 a-sequio.ads
+43k13*Sequential_IO 158e22 21|6w10 42r30
+53P9 File_Type(39|43R9) 21|47r14[42]
+55E9 File_Mode
+55n23 In_File{55E9[21|42]} 21|64r26[42]
+76U14 Open 21|64r17[42]
+82U14 Close 21|131r33[42]
+97U14 Read 21|82r41[42]
+111X4 End_Error 21|130r30[42]
+X 14 a-textio.ads
+49K13*Text_IO 472e16 21|5w10 16r29 45r30
+74I12*Field{integer}
+79I12*Number_Base{integer}
+167U14*New_Line 21|121r45
+209U14*Put 21|55r13 59r13 62r13
+209e19 Item{character} 21|55r18 59r18 62r18
+243U14*Put 21|56r13 60r13 61r13 105r53 107r53 119r53
+264U14*Put_Line 21|97r53
+X 16 a-timoio.ads
+45k21*Modular_IO 84e27 21|45r38
+65U14 Put 21|113r55[45]
+66m7 Item{24|60M9} 21|113r59[45]
+67i7 Width{14|74I12} 21|113r76[45]
+68i7 Base{14|79I12} 21|113r89[45]
+X 20 binary.ads
+9K9*binary 13e11 21|9w6 9r21
+11V18*bitfield_image{string} 21|119r63
+X 21 bindump.adb
+14U11*bindump 14b11 141l5 141t12
+16K17 tio=16:29 55r9 56r9 59r9 60r9 61r9 62r9 97r49 105r49 107r49 119r49
+. 121r41
+18I17 column_type{positive} 70r33 71r40 79r42
+20V18 narg{positive} 20b18 36l13 36t17 50r43
+40M17 block_type{24|57M9} 42r44 66r33 67r33 70r65 71r69
+42K17 seqio[10|43] 43r13
+45K17 u64io[16|45] 113r49
+47p9 fd{10|53P9[42]} 64m22 82r46 131m39
+48a9 file_name{string} 64r35
+50i9 term_ncol{positive} 70r51
+51i9 i_ln{natural} 115m41 115r49 134r27 135m17
+66m25 blk{40M17} 82m50 83r52 85r52 89r49
+67m25 rblk{40M17} 85r44 89m41
+68i25 nrep{natural} 94m41 94r49 96r44 97r82 99m41 102r36 104r44
+69b25 lmono{boolean} 77m33 86m49 93r36
+70i25 col{18I17} 71r61 79r63 125r62
+71a25 cols(40M17) 83m41 117r50 119r78
+72m25 i_blk{24|57M9} 111r85 125m33 125r42
+79i37 i{integer} 83r46
+111m49 i_byte{24|60M9} 113r68
+117i45 b{integer} 119r83
+X 22 gnat.ads
+36K9*GNAT 21|10r6 30r71 22|39e9
+X 23 g-os_lib.ads
+51K14*OS_Lib=51:36 21|10w11 30r76
+X 24 interfac.ads
+36K9*Interfaces 21|7w6 7r29 24|171e15
+57M9*Unsigned_32 21|40r31 72r33 125r50
+60M9*Unsigned_64 21|45r49 111r58 111r73
+X 36 s-os_lib.ads
+67P12*String_Access{46|45P9}
+833V13*Getenv{67P12} 21|30r83
+X 46 s-string.ads
+45P9*String_Access(string)
+

@@ -1,10 +1,13 @@
 #!/bin/bash
 
-while [ 1 ] 
-do ./bindump fake_dev_mem 
-	sleep 0.5 
-	clear 
-done
+./bindump fake_dev_mem
+
+
+-- while [ 1 ] 
+-- do ./bindump fake_dev_mem 
+-- 	sleep 0.5 
+-- 	clear 
+-- done
 
 
 

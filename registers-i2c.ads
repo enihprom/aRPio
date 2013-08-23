@@ -101,11 +101,13 @@ package registers.i2c is
 	type bsc_fifo_reg is
 		record
 			data : byte_natural;
+			--nulx : nulx24_type; --if
 		end record;
 
 	for bsc_fifo_reg use
 		record
 			data  at 0 range 0 .. 7;
+			--nulx  at 0 range 8 .. 31; --if
 		end record;
 
 	for bsc_fifo_reg'size use 32;
@@ -181,8 +183,6 @@ package registers.i2c is
 		end record;
 
 	for i2c_address_map'size use 32*8;
-
-	-- todo write types for all devices
 
 end registers.i2c;
 
