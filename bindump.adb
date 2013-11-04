@@ -42,102 +42,84 @@ procedure bindump is
 	package seqio is new sequential_io(block_type);
 	use seqio;
 
-	package u64io is new text_io.modular_io(unsigned_64);
+	package u32io is new text_io.modular_io(unsigned_32);
 
 	fd : file_type;
+
 	file_name  : constant string   := argument(1);
 
 	term_ncol  : constant positive := narg;
-	i_ln       : natural           := 0;
 
 begin
 
-	tio.put (item => ascii.esc);
-	tio.put ("[2J");
+	open(fd, in_file, file_name);
+	declare
+		blk   : block_type;
+		rblk  : block_type    := 0;
+		nrep  : natural       := 0;
+		lmono : boolean       := false;
+		col   : column_type   := (term_ncol-30)/block_type'size;
+		cols  : array (column_type'first .. col) of block_type;
+		i_blk : unsigned_32   := 0;
+	begin
 
-	loop
-	tio.put (item => ascii.esc);
-	tio.put ("[");
-	tio.put ("1;1");
-	tio.put (item => 'f');
+		loop
 
-		open(fd, in_file, file_name);
-		declare
-			blk   : block_type;
-			rblk  : block_type    := 0;
-			nrep  : natural       := 0;
-			lmono : boolean       := false;
-			col   : column_type   := (term_ncol-30)/block_type'size;
-			cols  : array (column_type'first .. col) of block_type;
-			i_blk : unsigned_32   := 0;
-		begin
+			lmono := true;
 
+			for i in column_type'first .. col 
 			loop
 
-				lmono := true;
+				read(fd, blk);
+				cols(i) := blk;
 
-				for i in column_type'first .. col 
-				loop
-
-					read(fd, blk);
-					cols(i) := blk;
-
-					if rblk /= blk then
-						lmono := false;
-					end if;
-
-					rblk := blk;
-
-				end loop;
-
-				if lmono then
-					nrep := nrep+1;
-				else
-					if nrep > 1 then
-						tio.put_line("             x " & nrep'img & "                 ");
-					end if;
-					nrep := 0;
+				if rblk /= blk then
+					lmono := false;
 				end if;
 
-				if nrep < 2 then
-
-					if nrep = 1 then 
-						tio.put("+");
-					else
-						tio.put(" ");
-					end if;
-
-					declare
-						i_byte : unsigned_64 := unsigned_64(i_blk * 4);
-					begin
-						u64io.put(item  => i_byte, width => 11, base  => 16);
-					end;
-					i_ln := i_ln + 1;
-
-					for b in cols'range
-					loop
-						tio.put(" " & bitfield_image(cols(b))); 
-					end loop;
-					tio.new_line;
-
-				end if;
-
-				i_blk := i_blk + unsigned_32(col);
+				rblk := blk;
 
 			end loop;
 
-		exception
-			when end_error =>
-				close(fd);
-		end;
+			if lmono then
+				nrep := nrep+1;
+			else
+				if nrep > 1 then
+					tio.put_line("             x " & nrep'img);
+				end if;
+				nrep := 0;
+			end if;
 
-		exit when i_ln > 100;
-		i_ln := 0;
-		delay 0.5;
+			if nrep < 2 then
 
-	end loop;
+				if nrep = 1 then 
+					tio.put("+");
+				else
+					tio.put(" ");
+				end if;
 
+				u32io.put(
+					item  => i_blk,
+					width => 11,
+					base  => 16);
 
+				for b in cols'range
+				loop
+					tio.put(" " & bitfield_image(cols(b))); 
+				end loop;
+				tio.new_line;
+
+			end if;
+
+			i_blk := i_blk+unsigned_32(col);
+
+		end loop;
+
+	exception
+		when end_error =>
+			tio.new_line;
+			close(fd);
+	end;
 end bindump;
 
 

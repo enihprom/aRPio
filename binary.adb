@@ -17,8 +17,8 @@ package body binary is
 		image_str : string(1..32);
 	begin
 
-		for i in 1..32 loop
-			if bits(33-i) then
+		for i in reverse 1..32 loop
+			if bits(i) then
 				image_str(i) := '1';
 			else
 				image_str(i) := '0';

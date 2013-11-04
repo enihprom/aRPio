@@ -5,11 +5,9 @@
 
 package registers.spi is
 
-	type clear_fifo_type is range 0 .. 3;
-	for clear_fifo_type'size use 2;
-
-	type chip_select_type is range 0 .. 3;
-	for chip_select_type'size use 2;
+	subtype clear_fifo_type  is natural_2bit;
+	subtype chip_select_type is natural_2bit;
+	subtype output_hold_type is natural_4bit;
 
 	type cs_reg is
 		record
@@ -57,6 +55,45 @@ package registers.spi is
 	for cs_reg'alignment use 4;
 	pragma atomic(cs_reg);
 
+	type fifo_reg is 
+		record
+			data : int_natural;
+		end record;
+
+	for fifo_reg use
+		record
+			data  at 0 range 0 .. 31;
+		end record;
+
+	for fifo_reg'size use 32;
+	for fifo_reg'alignment use 4;
+
+	type clk_reg is 
+		record
+			cdiv: short_natural;
+		end record;
+
+	for clk_reg use
+		record
+			cdiv  at 0 range 0 .. 31;
+		end record;
+
+	for clk_reg'size use 32;
+	for clk_reg'alignment use 4;
+
+	type dlen_reg is 
+		record
+			len: short_natural;
+		end record;
+
+	for dlen_reg use
+		record
+			len  at 0 range 0 .. 31;
+		end record;
+
+	for dlen_reg'size use 32;
+	for dlen_reg'alignment use 4;
+
 
 	-- todo
 	
@@ -77,7 +114,7 @@ package registers.spi is
 			clk     at 16#08# range 0 .. 31; 
 			dlen    at 16#0c# range 0 .. 31; 
 			ltoh    at 16#10# range 0 .. 31; 
-			dc      at 16#04# range 0 .. 31; 
+			dc      at 16#14# range 0 .. 31; 
 		end record;
 
 	for spi_address_map'size use 32*6;

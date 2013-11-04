@@ -1,7 +1,10 @@
 ----------------------------
 ---- registers-pwm (spec) --
 ----------------------------
---
+
+with types;	use types;
+
+
 
 package registers.pwm is
 
@@ -37,7 +40,7 @@ package registers.pwm is
 
 	type sta_reg is
 		record
-			sta4, sta3, sta2, sta1, berr, gapo4, gapo,
+			sta4, sta3, sta2, sta1, berr, gapo4, gapo3,
 			gapo2, gapo1, rerr1, werr1, empt1, full1  
 					: boolean;
 		end record;
@@ -66,10 +69,17 @@ package registers.pwm is
 
 	type dmac_reg is
 		record
+			enab  :    boolean;
+			panic :    byte_natural;
+			dreq  :    byte_natural;
+			--http://imgur.com/EbDVOwG.jpg
 		end record;
 
 	for dmac_reg use
 		record
+			enab   at 0 range 31 .. 31;
+			panic  at 0 range  8 .. 15;
+			dreq   at 0 range  0 ..  7;
 		end record;
 
 	for dmac_reg'size use 32;
@@ -79,10 +89,12 @@ package registers.pwm is
 
 	type rng1_reg is
 		record
+			pwm_rngi  :  int_natural;
 		end record;
 
 	for rng1_reg use
 		record
+			pwm_rngi  at 0 range 0 .. 31;
 		end record;
 
 	for rng1_reg'size use 32;
@@ -92,10 +104,12 @@ package registers.pwm is
 
 	type dat1_reg is
 		record
+			pwm_dati  :  int_natural;
 		end record;
 
 	for dat1_reg use
 		record
+			pwm_dati  at 0 range 0 .. 31;
 		end record;
 
 	for dat1_reg'size use 32;
@@ -105,10 +119,12 @@ package registers.pwm is
 
 	type fif1_reg is
 		record
+			pwm_fifo  :  int_natural;
 		end record;
 
 	for fif1_reg use
 		record
+			pwm_fifo  at 0 range 0 .. 31;
 		end record;
 
 	for fif1_reg'size use 32;
@@ -118,10 +134,12 @@ package registers.pwm is
 
 	type rng2_reg is
 		record
+			pwm_rngi  :  int_natural;
 		end record;
 
 	for rng2_reg use
 		record
+			pwm_rngi  at 0 range 0 .. 31;
 		end record;
 
 	for rng2_reg'size use 32;
@@ -131,10 +149,12 @@ package registers.pwm is
 
 	type dat2_reg is
 		record
+			pwm_dati  :  int_natural;
 		end record;
 
 	for dat2_reg use
 		record
+			pwm_dati  at 0 range 0 .. 31;
 		end record;
 
 	for dat2_reg'size use 32;

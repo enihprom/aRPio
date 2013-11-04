@@ -1,5 +1,5 @@
 
---with interfaces.c;	use interfaces.c;
+with interfaces.c;	use interfaces.c;
 with interfaces;	use interfaces;
 with system;
 with platform_mmio;
@@ -29,11 +29,8 @@ package bcm2835_mmio is
 
 	-- function select fields to directly assign pin_mode's --------
 	---------------------------------------------- function names --
-	fpin_sda_fsel   : gpio.pin_mode renames gpio_regs.fsel.pin02;
-	fpin_scl_fsel   : gpio.pin_mode renames gpio_regs.fsel.pin03;
-	--todo uart pins
-	--fpin_txd0_fsel  : gpio.pin_mode renames gpio_regs.fsel.pin14;
-	--fpin_rxd0_fsel  : gpio.pin_mode renames gpio_regs.fsel.pin15;
+	fpin_sda_fsel : gpio.pin_mode renames gpio_regs.fsel.pin02;
+	fpin_scl_fsel : gpio.pin_mode renames gpio_regs.fsel.pin03;
 
 	-- function select fields to directly assign pin_mode's --------
 	---------------------------------------------- breakout names --

@@ -55,7 +55,6 @@ package body bcm2835_mmio is
 
 		for b in data'range loop
 			i2c_regs.fifo.data := byte_natural(b);
-			--i2c_regs.fifo.nulx := nulx24_type'first;
 		end loop;
 
 		i2c_regs.c.i2cen   := true;
@@ -90,7 +89,6 @@ package body bcm2835_mmio is
 		i2c_regs.dlen.dlen := 1;
 
 		i2c_regs.fifo.data := byte_natural(byte);
-		--i2c_regs.fifo.nulx := nulx24_type'first;
 
 		i2c_regs.c.i2cen   := true;
 		i2c_regs.c.st      := true;
@@ -109,49 +107,18 @@ package body bcm2835_mmio is
 
 	----------------------------------------------------------------
 
-  	function i2c_tx_read(
-  		addr     : in     natural_7bit  := i2c_regs.a.addr;
-  		timeout  : in     time_span     := to_time_span(0.1) )
-  		return byte_natural
-  	is
-  		enter : constant time := clock;
-  		byte  : byte_natural;
-  	begin
---		byte := i2c_reg.fifo;
---		if i2c_reg.s.done then
-  			return byte;
---		else
---			raise unexpected_data;
---		end if;
-  	end i2c_tx_read;
---
---	function i2c_tx_read(
---		addr     : in     natural_7bit  := i2c_regs.a.addr;
---		nbytes   : in     buffer_index  := 1;
---		timeout  : in     time_span     := to_time_span(0.1) )
---		return byte_buffer
---	is
---		enter : constant time := clock;
---		byte_buffer  : buffer_bytes(buffer_index'first .. nbytes);
---		i     : buffer_index  := 0;
---	begin
---
---		i2c_regs.c.clear   := true;
---		i2c_regs.s.clkt    := true;
---		i2c_regs.s.err     := true;
---		i2c_regs.s.done    := true;
---		i2c_regs.dlen.dlen := nbytes;
---
---		while not i2c_regs.s.done loop
---			while i2c_regs.s.rxd loop
---				byte_buffer(i) := i2c_reg.fifo.data;
---				i := i+1;
---			end loop;
---		end loop;
---	end i2c_tx_read;
+	function i2c_tx_read(
+		addr     : in     natural_7bit  := i2c_regs.a.addr;
+		timeout  : in     time_span     := to_time_span(0.1) )
+		return byte_natural
+	is
+		enter : constant time := clock;
+	begin
+		return byte_natural(0);
+	end i2c_tx_read;
 
 	-- todo i2c_tx_protocol(seq : in protocol_type) is
-	-- todo i2c_tx_... versions with modular_types
+
 
 	----------------------------------------------------------------
 	----------------------------------------------------------------

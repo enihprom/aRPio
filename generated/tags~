@@ -1,0 +1,771 @@
+
+../../BiSeqIn.adb,35
+   package Seq_IO Seq_IO/s13,245
+
+../../Java_Style_Object_To_String.adb,84
+	package tio tio/s6,105
+	package Obj Obj/s7,139
+	package body Obj Obj/b19,446
+
+../../args.adb,56
+package body args args/b7,128
+	package cl cl/s9,150
+
+../../args.ads,26
+package args args/s4,52
+
+../../arm_neon_intrinsics.adb,61
+package body ARM_NEON_Intrinsics ARM_NEON_Intrinsics/b5,50
+
+../../arm_neon_intrinsics.ads,56
+package ARM_NEON_intrinsics ARM_NEON_intrinsics/s5,50
+
+../../array_sum.adb,37
+   package Long_IO Long_IO/s20,525
+
+../../asminc.adb,37
+package body asminc asminc/b14,325
+
+../../asminc.ads,30
+package asminc asminc/s3,57
+
+../../backend.adb,37
+package body backend backend/b3,19
+
+../../backend.ads,82
+package backend backend/s5,44
+	package mot mot/s8,167
+	package sp sp/s9,196
+
+../../binary.adb,36
+package body binary binary/b9,135
+
+../../binary.ads,31
+package binary binary/s9,135
+
+../../biseqout.adb,35
+   package Seq_IO Seq_IO/s15,290
+
+../../bubble.ada,64
+package BubbleBubble/s2,1
+package body BubbleBubble/b23,513
+
+../../bubble.adb,33
+package body BubbleBubble/b2,2
+
+../../bubble.ads,28
+package BubbleBubble/s2,1
+
+../../b~Shared_Library_Call.adb,40
+package body ada_main ada_main/b7,209
+
+../../b~Shared_Library_Call.ads,34
+package ada_main ada_main/s3,28
+
+../../b~gtk1.adb,40
+package body ada_main ada_main/b7,179
+
+../../b~gtk1.ads,34
+package ada_main ada_main/s3,28
+
+../../b~matrix_product.adb,40
+package body ada_main ada_main/b7,199
+
+../../b~matrix_product.ads,34
+package ada_main ada_main/s3,28
+
+../../b~neon.adb,40
+package body ada_main ada_main/b7,179
+
+../../b~neon.ads,34
+package ada_main ada_main/s3,28
+
+../../callbacks_ui1.ads,96
+package Callbacks_ui1 Callbacks_ui1/s5,90
+   package Button_Callback Button_Callback/s7,116
+
+../../casting.adb,30
+	package rmath rmath/s7,151
+
+../../ccver.adb,53
+	package io io/s6,75
+	package ccver ccver/s8,143
+
+../../cell.adb,62
+package body cell cell/b6,125
+      package rn rn/s10,228
+
+../../cell.ads,117
+package cell cell/s7,154
+   package math math/s12,240
+   package t_io t_io/s15,313
+   package lv lv/s63,1837
+
+../../cellpop.adb,158
+package body CellPop CellPop/b10,244
+      package convec convec/s41,994
+      package except except/s42,1039
+         package convec convec/s84,2105
+
+../../cellpop.ads,223
+package CellPop CellPop/s10,255
+   package t_io t_io/s30,866
+   package i_io i_io/s31,903
+   package fp_io fp_io/s32,948
+   package cell_vector cell_vector/s35,1099
+   package alpha_vector alpha_vector/s38,1233
+
+../../comlin.adb,24
+	package cl cl/s8,110
+
+../../connection_pool.adb,101
+package body Connection_Pool Connection_Pool/b3,29
+   protected body Pool_Type Pool_Type/b23,540
+
+../../connection_pool.ads,158
+package Connection_Pool Connection_Pool/s6,170
+   package Pool_Container_Type Pool_Container_Type/s17,447
+   protected type Pool_Type Pool_Type/t21,552
+
+../../connection_pool_attempt_2.adb,101
+package body Connection_Pool Connection_Pool/b3,29
+   protected body Pool_Type Pool_Type/b11,191
+
+../../connection_pool_attempt_2.ads,158
+package Connection_Pool Connection_Pool/s9,258
+   package Pool_Container_Type Pool_Container_Type/s11,286
+   protected type Pool_Type Pool_Type/t15,382
+
+../../container_iterate.adb,25
+   package p p/s14,302
+
+../../containers1.adb,191
+   package F_IO F_IO/s12,308
+   package T_IO T_IO/s13,347
+   package real_list real_list/s15,407
+   package real_set real_set/s16,479
+   package real_multiset real_multiset/s17,543
+
+../../containers2.adb,84
+   package hm hm/s35,915
+   package io io/s36,997
+   package wio wio/s37,1032
+
+../../containers3.adb,58
+  package String_String_Maps String_String_Maps/s14,395
+
+../../containers4.adb,47
+	package io io/s5,84
+	package iv iv/s6,117
+
+../../cs.adb,23
+	package io io/s5,54
+
+../../device.adb,41
+	package i2cbuf_ptrs i2cbuf_ptrs/s5,41
+
+../../diststat.adb,77
+   package V V/s12,258
+   package C C/s14,349
+   package IO IO/s16,447
+
+../../ean.adb,64
+   package t_io t_io/s12,264
+   package fp_io fp_io/s13,301
+
+../../eantypes.ads,60
+package eantypes eantypes/s4,59
+   package av av/s9,269
+
+../../fibonacci_4.adb,89
+   package CL CL/s13,208
+   package T_IO T_IO/s14,248
+   package I_IO I_IO/s15,285
+
+../../fibonacci_5.adb,89
+   package CL CL/s15,287
+   package T_IO T_IO/s16,327
+   package I_IO I_IO/s17,364
+
+../../function-delete-event.adf,41
+function On_Main_Window_Delete_Event1,0
+
+../../geometry.adb,28
+	package math math/s9,184
+
+../../getopt-if.adb,72
+package Getopt Getopt/s47,3376
+package body Getopt Getopt/b130,8851
+
+../../getopt.adb,38
+package body Getopt Getopt/b72,5290
+
+../../getopt.ads,33
+package Getopt Getopt/s48,3379
+
+../../getopt1.adb,65
+  package Exceptions Exceptions/s6,74
+  package IO IO/s7,119
+
+../../gnatawk.adb,31
+    package t_io t_io/s9,153
+
+../../gtk1.adb,39
+   package Handlers Handlers/s24,463
+
+../../gtk2.adb,92
+   package Handlers Handlers/s17,398
+   package Return_Handlers Return_Handlers/s18,468
+
+../../gtkada-terminal.adb,56
+package body Gtkada.Terminal Gtkada.Terminal/b41,2427
+
+../../hello.adb,31
+   package math math/s13,278
+
+../../hello_world_pick.adb,40
+      package Lang_IO Lang_IO/s28,703
+
+../../intersect.adb,23
+	package io io/s5,77
+
+../../libusb_thin.ads,43
+package Libusb_Thin Libusb_Thin/s22,1240
+
+../../list1.adb,54
+   package lp lp/s14,319
+   package vp vp/s15,378
+
+../../main_windows.adb,198
+package body Main_Windows Main_Windows/b146,5280
+   package Notebook_Cb Notebook_Cb/s157,5660
+   package Window_Cb Window_Cb/s183,6672
+   package Return_Window_Cb Return_Window_Cb/s184,6739
+
+../../mandel.adb,29
+	package ppmo ppmo/s21,584
+
+../../mandel_help.ads,40
+package mandel_help mandel_help/s4,61
+
+../../mandel_mt.adb,29
+	package ppmo ppmo/s21,640
+
+../../mandelfloat.adb,29
+	package ppmo ppmo/s21,640
+
+../../map1.adb,83
+	package math math/s12,198
+	package osrnd osrnd/s16,326
+	package m m/s43,906
+
+../../map2.adb,124
+	package math math/s13,232
+	package osrnd osrnd/s17,360
+	package o_map o_map/s56,1205
+	package o_set o_set/s63,1372
+
+../../matreshka-internals-simd-arm-neon.adb,92
+package body Matreshka.Internals.SIMD.ARM.NEON Matreshka.Internals.SIMD.ARM.NEON/b45,3342
+
+../../matreshka-internals-simd-arm-neon.ads,87
+package Matreshka.Internals.SIMD.ARM.NEON Matreshka.Internals.SIMD.ARM.NEON/s45,3342
+
+../../matreshka-internals-simd-arm.ads,77
+package Matreshka.Internals.SIMD.ARM Matreshka.Internals.SIMD.ARM/s50,3595
+
+../../matrix_generic_product.adb,26
+	package gra gra/s9,189
+
+../../matrix_ops.ada,81
+package Matrix_Ops Matrix_Ops/s1,0
+package body Matrix_Ops Matrix_Ops/b6,165
+
+../../matrix_ops.adb,42
+package body Matrix_Ops Matrix_Ops/b2,1
+
+../../matrix_ops.ads,39
+package Matrix_Ops Matrix_Ops/s3,101
+
+../../motion.adb,35
+package body motion motion/b4,61
+
+../../motion.ads,76
+package Motion Motion/s5,96
+   package Motionscript Motionscript/s8,214
+
+../../nested_containers.adb,49
+   package e e/s9,174
+   package p p/s17,377
+
+../../nsha1sum.adb,31
+   package Math Math/s14,325
+
+../../number_base_conversion.adb,68
+package body Number_Base_Conversion Number_Base_Conversion/b9,204
+
+../../number_base_conversion.ads,63
+package number_base_conversion number_base_conversion/s8,118
+
+../../numeric_7.adb,230
+   package Str Str/s13,276
+   package T_IO T_IO/s14,322
+   package Exept Exept/s15,359
+   package Complex_Types Complex_Types/s24,596
+   package Complex_Functions Complex_Functions/s26,684
+   package C_IO C_IO/s29,799
+
+../../oo1class.adb,39
+package body oo1class oo1class/b4,49
+
+../../oo1class.ads,33
+package oo1class oo1class/s1,0
+
+../../oo2class.adb,39
+package body oo2class oo2class/b3,19
+
+../../oo2class.ads,58
+package oo2class oo2class/s3,29
+	package SU SU/s7,103
+
+../../oo3class.adb,39
+package body oo3class oo3class/b4,49
+
+../../oo3class.ads,33
+package oo3class oo3class/s1,0
+
+../../orderedset.adb,25
+   package p p/s38,906
+
+../../pentium_cycle_counter.adb,66
+package body Pentium_Cycle_Counter Pentium_Cycle_Counter/b6,209
+
+../../pentium_cycle_counter.ads,59
+package Pentium_Cycle_Counter Pentium_Cycle_Counter/s1,0
+
+../../pkgren.adb,25
+   package IO IO/s4,38
+
+../../planar_edgeset.adb,50
+package body planar_edgeset planar_edgeset/b1,0
+
+../../planar_edgeset.ads,138
+package planar_edgeset planar_edgeset/s8,160
+	package math math/s12,233
+	package o_map o_map/s47,796
+	package o_set o_set/s55,951
+
+../../planar_edgeset_test1.adb,123
+	package math math/s16,291
+	package osrnd osrnd/s20,419
+	package o_map o_map/s48,979
+	package o_set o_set/s55,1146
+
+../../planar_edgeset_test2.adb,31
+	package osrnd osrnd/s12,195
+
+../../ppm.adb,29
+package body PPM PPM/b4,86
+
+../../ppm.ads,25
+package PPM PPM/s7,153
+
+../../protected.adb,136
+protected type Protected_Buffer_Type Protected_Buffer_Type/t1,0
+  protected body Protected_Buffer_Type Protected_Buffer_Type/b9,216
+
+../../protected1.adb,142
+   protected type Protected_Buffer_Type Protected_Buffer_Type/t5,98
+   protected body Protected_Buffer_Type Protected_Buffer_Type/b12,316
+
+../../random1.adb,42
+   package Random_Die Random_Die/s7,177
+
+../../read_inputs.adb,62
+		  package t_io t_io/s4,83
+         package su su/s5,121
+
+../../regional.ads,71
+package Regional Regional/s3,54
+   package Phrases Phrases/s20,459
+
+../../screen.adb,69
+package body Screen Screen/b5,53
+  package Int_IO Int_IO/s15,328
+
+../../screen.ads,30
+package Screen Screen/s4,39
+
+../../scwa-gnadeodbc.adb,128
+package body SCWA SCWA/b1,0
+         package Timestamp_Binding Timestamp_Binding/s68,2284
+         package TB TB/s71,2398
+
+../../scwa-gnadeodbc.ads,28
+package scwa scwa/s37,908
+
+../../seqio_record1.adb,36
+  package Tree_IO Tree_IO/s19,522
+
+../../seqio_record2.adb,36
+  package Tree_IO Tree_IO/s19,522
+
+../../sha1sum.adb,35
+   package Buf_IO Buf_IO/s16,282
+
+../../sha1sum_seqio.adb,35
+   package buf_io buf_io/s14,225
+
+../../sigusr1_handler.adb,96
+package body SigUSR1_Handler SigUSR1_Handler/b3,36
+   protected body Handler Handler/b9,123
+
+../../sigusr1_handler.ads,89
+package SigUSR1_Handler SigUSR1_Handler/s4,96
+      protected Handler Handler/t5,123
+
+../../simd_arm.ads,37
+package SIMD_ARM SIMD_ARM/s50,3595
+
+../../simd_arm_neon.adb,52
+package body SIMD_ARM_NEON SIMD_ARM_NEON/b49,3392
+
+../../simd_arm_neon.ads,47
+package SIMD_ARM_NEON SIMD_ARM_NEON/s47,3387
+
+../../sl.adb,56
+package body sl sl/b3,49
+   package Math Math/s4,68
+
+../../sl.ads,21
+package sl sl/s1,0
+
+../../sockets.adb,40
+package body Sockets Sockets/b49,3304
+
+../../sockets.ads,35
+package Sockets Sockets/s42,2929
+
+../../sort_composites.adb,51
+   package Composite_Sets Composite_Sets/s26,623
+
+../../space.adb,63
+package body space space/b4,86
+   package math math/s6,109
+
+../../space.ads,28
+package space space/s3,38
+
+../../specdep1.adb,38
+package body specdep1 specdep1/b1,0
+
+../../specdep1.ads,34
+package specdep1 specdep1/s3,16
+
+../../specdep2.adb,39
+package body specdep2 specdep2/b5,18
+
+../../specdep2.ads,33
+package specdep2 specdep2/s2,1
+
+../../string2.adb,56
+	package io io/s38,843
+	package ccver ccver/s40,911
+
+../../switch.adb,28
+   package iio iio/s6,113
+
+../../tasking1.adb,55
+   package io io/s5,67
+   package i_io i_io/s6,102
+
+../../tasking2.adb,62
+      package io io/s17,299
+   package t_io t_io/s51,1153
+
+../../tasking3.adb,90
+      package io io/s6,63
+      package io io/s21,397
+   package t_io t_io/s61,1409
+
+../../tasking4.adb,89
+      package io io/s26,418
+      package io io/s62,1298
+   package io io/s97,2159
+
+../../tasking5.adb,25
+   package io io/s4,41
+
+../../tasking6.adb,25
+	package io io/s11,211
+
+../../tasking7.adb,25
+	package io io/s15,275
+
+../../tasking8.adb,55
+   package IO IO/s6,68
+   package I_IO I_IO/s7,103
+
+../../tasking9.adb,55
+   package IO IO/s6,68
+   package I_IO I_IO/s7,103
+
+../../tdam.ads,26
+package tdam tdam/s3,45
+
+../../test_smtp_authentication.adb,34
+   package SMTPA SMTPA/s33,1779
+
+../../timeit.adb,51
+   package Random_Integer Random_Integer/s14,398
+
+../../tmp.ads,23
+package tmp tmp/s1,0
+
+../../types.adb,60
+   package F_IO F_IO/s8,120
+   package T_IO T_IO/s9,159
+
+../../ucconv.adb,92
+   package T_IO T_IO/s9,145
+   package I_IO I_IO/s10,182
+   package M_IO M_IO/s11,237
+
+../../ui1_intl.adb,39
+package body ui1_Intl ui1_Intl/b3,36
+
+../../ui1_intl.ads,33
+package ui1_Intl ui1_Intl/s1,0
+
+../../uint64.adb,23
+	package io io/s5,72
+
+../../vector.adb,38
+   package Float_IO Float_IO/s5,100
+
+../../waveencode.adb,25
+	package iio iio/s6,87
+
+../../window1_pkg-callbacks.adb,98
+package body Window1_Pkg.Callbacks Window1_Pkg.Callbacks/b14,423
+      package ba ba/s77,1984
+
+../../window1_pkg-callbacks.ads,60
+package Window1_Pkg.Callbacks Window1_Pkg.Callbacks/s4,54
+
+../../window1_pkg.adb,47
+package body Window1_Pkg Window1_Pkg/b11,302
+
+../../window1_pkg.ads,42
+package Window1_Pkg Window1_Pkg/s10,333
+
+../../window2_pkg-callbacks.adb,67
+package body Window2_Pkg.Callbacks Window2_Pkg.Callbacks/b13,344
+
+../../window2_pkg-callbacks.ads,60
+package Window2_Pkg.Callbacks Window2_Pkg.Callbacks/s4,54
+
+../../window2_pkg.adb,47
+package body Window2_Pkg Window2_Pkg/b11,302
+
+../../window2_pkg.ads,41
+package Window2_Pkg Window2_Pkg/s7,238
+
+../../xcond.adb,30
+	package rmath rmath/s8,161
+
+../../window1.adb,0
+
+../../vector2d.adb,0
+
+../../vcv.adb,0
+
+../../uuid.adb,0
+
+../../udp_server.adb,0
+
+../../udp_client.adb,0
+
+../../trig.adb,0
+
+../../tokenize_blank.adb,0
+
+../../tmp.adb,0
+
+../../tick_address.adb,0
+
+../../test_getopt.adb,0
+
+../../test_cp.adb,0
+
+../../tag.adb,0
+
+../../t.adb,0
+
+../../string_to_stream_element.adb,0
+
+../../string1.adb,0
+
+../../streamio2.adb,0
+
+../../stream_io1.adb,0
+
+../../stream_io.adb,0
+
+../../sod.adb,0
+
+../../smtp_test.adb,0
+
+../../signals.adb,0
+
+../../sha1sum_strio.adb,0
+
+../../server2.adb,0
+
+../../server.adb,0
+
+../../rtsh.adb,0
+
+../../reprchange.adb,0
+
+../../real1.adb,0
+
+../../re.adb,0
+
+../../range.adb,0
+
+../../radix.adb,0
+
+../../print_commands.adb,0
+
+../../prime_factors.adb,0
+
+../../prime_factors-orig.adb,0
+
+../../pingpong.adb,0
+
+../../parse_commas.adb,0
+
+../../oo3.adb,0
+
+../../oo2.adb,0
+
+../../oo1.adb,0
+
+../../numeric_types.adb,0
+
+../../number_base_conversion_test.adb,0
+
+../../nullstring.adb,0
+
+../../new_keywords.adb,0
+
+../../neon.adb,0
+
+../../ne.adb,0
+
+../../mod.adb,0
+
+../../misc.adb,0
+
+../../memdump.adb,0
+
+../../matrix_product.adb,0
+
+../../map.adb,0
+
+../../luart.adb,0
+
+../../lrm.adb,0
+
+../../ito.adb,0
+
+../../io1.adb,0
+
+../../int.adb,0
+
+../../inherit.adb,0
+
+../../inc.adb,0
+
+../../image.adb,0
+
+../../hello_world_ml.adb,0
+
+../../hamming.adb,0
+
+../../gtkada_with_tasks.adb,0
+
+../../glade1.adb,0
+
+../../giodemo.adb,0
+
+../../gi.adb,0
+
+../../fsel_control.adb,0
+
+../../float3.adb,0
+
+../../float2.adb,0
+
+../../float1.adb,0
+
+../../fixed.adb,0
+
+../../fibonacci.adb,0
+
+../../exit0.adb,0
+
+../../except.adb,0
+
+../../enum.adb,0
+
+../../dot_product_main.adb,0
+
+../../divide1.adb,0
+
+../../discriminant_rtti.adb,0
+
+../../discriminant.adb,0
+
+../../convert_flags1.adb,0
+
+../../constraint.adb,0
+
+../../constants.adb,0
+
+../../charenum.adb,0
+
+../../char.adb,0
+
+../../cb.adb,0
+
+../../c_1.adb,0
+
+../../bsc.adb,0
+
+../../bool.adb,0
+
+../../bitoper.adb,0
+
+../../bitfield_image.adb,0
+
+../../attributes.adb,0
+
+../../asm2.adb,0
+
+../../arrays.adb,0
+
+../../arrayloops.adb,0
+
+../../args_test.adb,0
+
+../../andthen.adb,0
+
+../../adaptor.adb,0
+
+../../acopy.adb,0
+
+../../a_plus_b.adb,0
+
+../../Shared_Library_Call.adb,0
