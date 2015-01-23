@@ -3,7 +3,8 @@
 -------------------------------
 
 with types;	use types;
-
+with constants;	use constants;
+with model_specific;
 
 package registers.gpio is
 
@@ -11,7 +12,7 @@ package registers.gpio is
 	M_b   : constant := 3;
 	P_b   : constant := 2;
 	T_b   : constant := 4;
-	CTL_REG_NBYTES : constant := 32*6;
+	CTL_REG_NBITS : constant := 32*6;
 
 	type      pin_mode           is range 0..7;
 	for       pin_mode'size      use M_b;
@@ -35,8 +36,14 @@ package registers.gpio is
 	pud_mode_down   : constant pud_mode :=  2#01#; 
 	pud_mode_up     : constant pud_mode :=  2#10#; 
 
+
+
 	-- todo model specific
-	type control_register is
+
+	-- index the 3bit pin_modes -----------------------------------
+	------------------------------------------------ nominalally --
+
+	type control_register_flat_record is
 		record
 			pin00 :  pin_mode;
 			pin01 :  pin_mode;
@@ -94,7 +101,7 @@ package registers.gpio is
 			pin53 :  pin_mode;
 		end record;
 
-	for control_register use
+	for control_register_flat_record use
 		record
 			-- pin_n @ n*addr-words range n*mode-bits .. (") + mode-bits
 			pin00  at 0*A_W range 0*M_b .. 0*M_b + M_b - 1;                  
@@ -152,44 +159,100 @@ package registers.gpio is
 			pin52  at 5*A_W range 2*M_b .. 2*M_b + M_b - 1;
 			pin53  at 5*A_W range 3*M_b .. 3*M_b + M_b - 1;
 		end record;
-	for control_register'size use CTL_REG_NBYTES;
-	for control_register'alignment use 4;
+	for control_register_flat_record'size use CTL_REG_NBITS;
+	for control_register_flat_record'alignment use 4;
 
-	----------------------------------------------------------------
-	-- for an approach to numerically index the 3bit pin_modes
-	-- in a function select register, these are some guiding
-	-- snippets
-	----------------------------------------------------------------
 
-	-- gpfsel : aliased control_register;
-	-- pragma volatile(gpfsel);
-	--
-	-- subtype   fsel_mode_index    is natural range 0 .. 9;
-	-- type      fsel_mode_array    is array (fsel_mode_index)
-	-- 		of     pin_mode;
-   --
-	-- subtype   fsel_word_index    is natural range 0 .. 5;
-	-- type      fsel_table         is array
-	-- 		(fsel_word_index, fsel_mode_index)
-	-- 		of     pin_mode;
-	--
-	-- type pin_mode_ref is 
-	--		record
-	-- 		i_mpin    : fsel_mode_index;
-	-- 		i_word    : fsel_word_index;
-	--		end record;
-	--
-   -- type fsel_mapping_array is array (pin_index) of pin_mode_ref;
-	--
-	-- fsel_trep : fsel_table
-	-- for fsel_trep'address use gpfsel'address;
-	--
-	--
-	-- fsel_trep(fsel_mapping(PIN).i_word, fsel_mapping(PIN).i_mpin);
+	-- index the 3bit pin_modes -----------------------------------
+	------------------------------------------------ numerically --
 
+	subtype   fsel_mode_index    is natural range 0 .. 9;
+	type      fsel_mode_array    is array (fsel_mode_index)
+			of     pin_mode;
+	pragma pack(fsel_mode_array);
+	for fsel_mode_array'size use 30;
+
+	type fsel_register_type is
+		record
+			mpins : fsel_mode_array;
+		end record;
+
+	for fsel_register_type use
+		record
+			mpins at 0 range 0 .. 29;
+		end record;
+	for fsel_register_type'size use 32;
+   
+	subtype   fsel_register_index    is natural range 0 .. 5;
+	type      fsel_register_array    is array
+			(fsel_register_index)
+			of     fsel_register_type;
+	pragma pack(fsel_register_array);
+	
+	type control_register_array_record is
+		record
+			words : fsel_register_array;
+		end record;
+
+	for control_register_array_record use
+		record
+			words  at 0 range 0 .. CTL_REG_NBITS-1;
+		end record;
+	for control_register_array_record'size use CTL_REG_NBITS;
+	for control_register_array_record'alignment use 4;
+
+	type nc_type is (empty, reserved);
+
+	-- todo into model_specific
+	-- type pin_mode_ref(i : pin_index) is separate;
+	type pin_mode_ref(i : pin_index := 0) is
+		record
+			case i is
+				when 
+					-- todo
+					RPI_V2_GPIO_P1_03  |
+					RPI_V2_GPIO_P1_05  |
+					RPI_V2_GPIO_P1_07  |
+					RPI_V2_GPIO_P1_08  |
+					RPI_V2_GPIO_P1_10  |
+					RPI_V2_GPIO_P1_11  |
+					RPI_V2_GPIO_P1_12  |
+					RPI_V2_GPIO_P1_13  |
+					RPI_V2_GPIO_P1_15  |
+					RPI_V2_GPIO_P1_16  |
+					RPI_V2_GPIO_P1_18  |
+					RPI_V2_GPIO_P1_19  |
+					RPI_V2_GPIO_P1_21  |
+					RPI_V2_GPIO_P1_22  |
+					RPI_V2_GPIO_P1_23  |
+					RPI_V2_GPIO_P1_24  |
+					RPI_V2_GPIO_P1_26  |
+					RPI_V2_GPIO_P5_03  |
+					RPI_V2_GPIO_P5_04  |
+					RPI_V2_GPIO_P5_05  |
+					RPI_V2_GPIO_P5_06 =>
+
+					i_mpin    : fsel_mode_index := i mod 10;
+					i_word    : fsel_register_index := i / 10;
+					
+				when others =>
+					not_connected  : nc_type;
+			end case;
+		end record;
+	
+	type pin_mode_ref_access is access pin_mode_ref;
+	type fsel_mapping_array is array (pin_index) of pin_mode_ref;
+
+	subtype continous_pin_index is natural 
+		range 0 .. model_specific.continous_absolute_pin_number-1;
+
+   type continous_fsel_mapping_array is array
+		(continous_pin_index) of pin_mode_ref;
+	
 	type gpio_address_map is
 		record
-			fsel    : control_register;
+			--fsel    : control_register_flat_record;
+			fsel    : control_register_array_record;
 			set,  
 			clr,  
 			lev,  
@@ -207,7 +270,7 @@ package registers.gpio is
 
 	for gpio_address_map use
 		record
-			fsel    at 16#00# range 0 .. CTL_REG_NBYTES - 1;
+			fsel    at 16#00# range 0 .. CTL_REG_NBITS - 1;
 			set     at 16#1c# range 0 .. bitarray_54'length-1;
 			clr     at 16#28# range 0 .. bitarray_54'length-1;
 			lev     at 16#34# range 0 .. bitarray_54'length-1;
@@ -223,7 +286,66 @@ package registers.gpio is
 			test    at 16#b0# range 0 .. 3;
 		end record;
 
-	for gpio_address_map'size use 16#b0#*8+32;
+	----------------------------------------------------------------
+	-- numerically index pins
+	----------------------------------------------------------------
+	
+	-- todo create it
+	--fsel_mapping : constant fsel_mapping_array renames model_specific.fsel_mapping;
+
+	RPI_V2_GPIO_P1_03_mode_ref : pin_mode_ref(i => RPI_V2_GPIO_P1_03);
+	RPI_V2_GPIO_P1_05_mode_ref : pin_mode_ref(i => RPI_V2_GPIO_P1_05);
+	RPI_V2_GPIO_P1_07_mode_ref : pin_mode_ref(i => RPI_V2_GPIO_P1_07);
+	RPI_V2_GPIO_P1_08_mode_ref : pin_mode_ref(i => RPI_V2_GPIO_P1_08);
+	RPI_V2_GPIO_P1_10_mode_ref : pin_mode_ref(i => RPI_V2_GPIO_P1_10);
+	RPI_V2_GPIO_P1_11_mode_ref : pin_mode_ref(i => RPI_V2_GPIO_P1_11);
+	RPI_V2_GPIO_P1_12_mode_ref : pin_mode_ref(i => RPI_V2_GPIO_P1_12);
+	RPI_V2_GPIO_P1_13_mode_ref : pin_mode_ref(i => RPI_V2_GPIO_P1_13);
+	RPI_V2_GPIO_P1_15_mode_ref : pin_mode_ref(i => RPI_V2_GPIO_P1_15);
+	RPI_V2_GPIO_P1_16_mode_ref : pin_mode_ref(i => RPI_V2_GPIO_P1_16);
+	RPI_V2_GPIO_P1_18_mode_ref : pin_mode_ref(i => RPI_V2_GPIO_P1_18);
+	RPI_V2_GPIO_P1_19_mode_ref : pin_mode_ref(i => RPI_V2_GPIO_P1_19);
+	RPI_V2_GPIO_P1_21_mode_ref : pin_mode_ref(i => RPI_V2_GPIO_P1_21);
+	RPI_V2_GPIO_P1_22_mode_ref : pin_mode_ref(i => RPI_V2_GPIO_P1_22);
+	RPI_V2_GPIO_P1_23_mode_ref : pin_mode_ref(i => RPI_V2_GPIO_P1_23);
+	RPI_V2_GPIO_P1_24_mode_ref : pin_mode_ref(i => RPI_V2_GPIO_P1_24);
+	RPI_V2_GPIO_P1_26_mode_ref : pin_mode_ref(i => RPI_V2_GPIO_P1_26);
+	RPI_V2_GPIO_P5_03_mode_ref : pin_mode_ref(i => RPI_V2_GPIO_P5_03);
+	RPI_V2_GPIO_P5_04_mode_ref : pin_mode_ref(i => RPI_V2_GPIO_P5_04);
+	RPI_V2_GPIO_P5_05_mode_ref : pin_mode_ref(i => RPI_V2_GPIO_P5_05);
+	RPI_V2_GPIO_P5_06_mode_ref : pin_mode_ref(i => RPI_V2_GPIO_P5_06);
+
+	fsel_mapping : constant fsel_mapping_array := 
+		(
+			RPI_V2_GPIO_P1_03 =>	RPI_V2_GPIO_P1_03_mode_ref,
+			RPI_V2_GPIO_P1_05 =>	RPI_V2_GPIO_P1_05_mode_ref,
+			RPI_V2_GPIO_P1_07 =>	RPI_V2_GPIO_P1_07_mode_ref,
+			RPI_V2_GPIO_P1_08 =>	RPI_V2_GPIO_P1_08_mode_ref,
+			RPI_V2_GPIO_P1_10 =>	RPI_V2_GPIO_P1_10_mode_ref,
+			RPI_V2_GPIO_P1_11 =>	RPI_V2_GPIO_P1_11_mode_ref,
+			RPI_V2_GPIO_P1_12 =>	RPI_V2_GPIO_P1_12_mode_ref,
+			RPI_V2_GPIO_P1_13 =>	RPI_V2_GPIO_P1_13_mode_ref,
+			RPI_V2_GPIO_P1_15 =>	RPI_V2_GPIO_P1_15_mode_ref,
+			RPI_V2_GPIO_P1_16 =>	RPI_V2_GPIO_P1_16_mode_ref,
+			RPI_V2_GPIO_P1_18 =>	RPI_V2_GPIO_P1_18_mode_ref,
+			RPI_V2_GPIO_P1_19 =>	RPI_V2_GPIO_P1_19_mode_ref,
+			RPI_V2_GPIO_P1_21 =>	RPI_V2_GPIO_P1_21_mode_ref,
+			RPI_V2_GPIO_P1_22 =>	RPI_V2_GPIO_P1_22_mode_ref,
+			RPI_V2_GPIO_P1_23 =>	RPI_V2_GPIO_P1_23_mode_ref,
+			RPI_V2_GPIO_P1_24 =>	RPI_V2_GPIO_P1_24_mode_ref,
+			RPI_V2_GPIO_P1_26 =>	RPI_V2_GPIO_P1_26_mode_ref,
+			RPI_V2_GPIO_P5_03 =>	RPI_V2_GPIO_P5_03_mode_ref,
+			RPI_V2_GPIO_P5_04 =>	RPI_V2_GPIO_P5_04_mode_ref,
+			RPI_V2_GPIO_P5_05 =>	RPI_V2_GPIO_P5_05_mode_ref,
+			RPI_V2_GPIO_P5_06 =>	RPI_V2_GPIO_P5_06_mode_ref,
+			others =>  (i => 0, not_connected => empty)
+
+			-- 1 => (i => 1, not_connected => empty),
+			-- 6 => (i => 6, not_connected => empty)
+
+		);
+
+	for gpio_address_map'size use 16#b0# * 8 + 32;
 	for gpio_address_map'alignment use 4;
 
 end registers.gpio;
