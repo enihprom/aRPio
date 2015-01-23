@@ -4,6 +4,12 @@ with interfaces; use interfaces;
 
 package model_specific is
 
+	n_P1_pins : constant := 17;
+	n_P5_pins : constant :=  4;
+
+	continous_absolute_pin_number : constant := 
+		n_P1_pins + n_P5_pins;
+
 	type p1_port_pins is 
 		record
 		       pin2,  pin3,  pin4,            pin7,  pin8,  pin9,  pin10, 
