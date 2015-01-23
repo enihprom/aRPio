@@ -31,7 +31,7 @@ package constants is
 	BCM2835_GPIO_PWM    : constant := (BCM2835_PERI_BASE + BCM2835_GPIO_PWM_OFFSET);
 	BCM2835_BSC1_BASE   : constant := (BCM2835_PERI_BASE + BCM2835_BSC1_OFFSET);
 
-	-- we should not need that since using the 'address approach
+	-- one should not need that -- TODO consider remove
 	BCM2835_GPFSEL0     : constant := 16#0000#;
 	BCM2835_GPFSEL1     : constant := 16#0004#;
 	BCM2835_GPFSEL2     : constant := 16#0008#;
