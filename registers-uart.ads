@@ -2,7 +2,7 @@
 ---- registers-uart (spec) --
 -----------------------------
 
-
+--
 package registers.uart is
 
 	type lchr_wlen_type is range 0 .. 3;
@@ -137,10 +137,25 @@ package registers.uart is
 
 	type cr_reg is
 		record
+			ctsen, rtsen, out2, out1, rts, dtr, rxe, txe, lbe, sirlp, siren, uarten;		
 		end record;
 
 	for cr_reg use
 		record
+			-- w0hole
+			ctsen  at 0 range 15 .. 15;
+			rtsen  at 0 range 14 .. 14;
+			out2   at 0 range 13 .. 13;
+			out1   at 0 range 12 .. 12;
+			rts    at 0 range 11 .. 11;
+			dtr    at 0 range 10 .. 10;
+			rxe    at 0 range 9 .. 9;
+			txe    at 0 range 8 .. 8;
+			lbe    at 0 range 7 .. 7;
+			-- w0hole
+			sirlp  at 0 range 2 .. 2;
+			siren  at 0 range 1 .. 1;
+			uarten at 0 range 0 .. 0;		
 		end record;
 
 	for cr_reg'size use 32;
