@@ -15,8 +15,8 @@ procedure test_mmio1 is
 	package mmio renames bcm2835_mmio;
 begin
 
-	put_line("mmio.bo_v1p1_03 := pin_mode_output;");
-	mmio.bo_v1p1_03_fsel := pin_mode_output;
+	--put_line("mmio.fsel_headerp11_pin03 := pin_mode_output;");
+	--mmio.fsel_headerp1_pin03 := pin_mode_output;
 	delay 1.0;
 
 	put_line("mmio.i2c_begin;");
